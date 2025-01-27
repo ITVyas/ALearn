@@ -1,0 +1,1 @@
+DELETE FROM word_spelling WHERE id = $id;

@@ -1,0 +1,1 @@
+INSERT INTO word_translations (word_id, translation) VALUES ($word_id, $sample);

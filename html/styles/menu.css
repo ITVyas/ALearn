@@ -1,0 +1,40 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-container {
+    width: 400px;
+    height: fit-content;
+    padding: 15px;
+    background-color: #f5f6ff;
+    border: 2px solid rgb(0, 0, 105);
+    border-radius: 20px;
+    margin: 25px auto;
+}
+
+.menu-container .option {
+    text-decoration: none;
+    position: relative;
+    display: block;
+    width: fit-content;
+    margin: 20px auto;
+    font-size: 24px;
+    font-weight: bold;
+    color: darkblue;
+}
+
+.menu-container .option:visited {
+    text-decoration: none;
+    color: darkblue;
+}
+
+.menu-container .option:hover {
+    cursor: pointer;
+    text-shadow: 1px 1px 4px rgb(195, 195, 195);
+    color: rgb(0, 0, 188);
+}

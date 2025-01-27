@@ -1,0 +1,1 @@
+INSERT INTO word_spelling (spelling, training_disabled, time) VALUES ($spelling, $training_disabled, $time);

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notification</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 10px;
+      background: rgba(40, 40, 40, 0.9);
+      color: white;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      animation: fade-in 0.3s, fade-out 0.3s 6.7s;
+      cursor: pointer;
+      position: relative;
+    }
+
+    body:hover {
+      background: rgb(46, 46, 46);
+    }
+
+    .title {
+      margin-top: 10px;
+      width: 100%;
+      font-weight: bold;
+      margin-bottom: 5px;
+      text-align: center;
+      font-size: 18px;
+    }
+    .message {
+      text-align: center;
+      width: 100%;
+      margin-top: 5px;
+      font-size: 16px;
+    }
+
+    .icon {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 26px;
+      height: 26px;
+      background-image: url('./ALearn-icon.svg');
+      background-size: cover;
+    }
+
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fade-out {
+        from {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+    }
+  </style>
+</head>
+<body>
+  <div class="icon"></div>
+  <div class="title" id="title"></div>
+  <div class="message" id="message"></div>
+</body>
+<script>
+    window.addEventListener('load', () => {
+      window.notificationAPI.notificationData((data) => {
+        document.getElementById('title').innerHTML = data.title;
+        document.getElementById('message').innerHTML = data.message;
+      });
+    });
+
+    document.body.addEventListener('click', window.notificationAPI.close)
+</script>
+</html>

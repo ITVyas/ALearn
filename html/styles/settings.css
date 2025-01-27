@@ -1,0 +1,122 @@
+#settings-form {
+    height: fit-content;
+    margin: 20px 0 20px 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.setting-field {
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    margin: 20px 0 20px 20px;
+}
+
+#scale {
+    width: 240px;
+}
+
+.range-container {
+    height: 100%;
+    padding-top: 6px;
+    display: flex;
+    flex-direction: row;
+    margin: 0 20px;
+}
+
+.range-value-container {
+    margin: 0;
+    margin-left: 10px;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+    padding-bottom: 7px;
+}
+
+#scale-value  {
+    margin: 0;
+}
+
+
+.setting-field button {
+    margin: auto 20px;
+}
+
+label.setting-swtich {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: block;
+    margin: 1em;
+    > input {
+      display: none;
+    }
+    
+    span {
+      color: #6A759B;
+    }
+    
+    i {
+      display: inline-block;
+      width: 58px;
+      height: 34px;
+      border-radius: 20px;
+      vertical-align: middle;
+      transition: .25s .09s;
+      position: relative;
+      background: #d0e7f1;
+      &:after {
+        content: " ";
+        display: block;
+        width: 25px;
+        height: 25px;
+        top: 4px;
+        left: 4px;
+        border-radius: 50%;
+        background: #fff;
+        position: absolute;
+        box-shadow: 1px 2px 4px 0 rgba(#000, .4);
+        transition: .15s;
+      }
+    }
+    
+    > input:checked + i {
+      background: #1094fb;
+    }
+    
+    > input:checked + i + span {
+    color: #29316b;
+    }
+    
+    > input:checked + i:after {
+      transform: translateX(25px);
+    }
+}
+
+#update-zoom {
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    font-size: 20px;
+    background: none;
+    border: 2px solid black;
+    color: black;
+    border-radius: 8px;
+    padding: 8px 20px;
+    cursor: pointer;
+    width: 170px;
+    margin-left: 20px;
+}
+
+#update-zoom:hover {
+    background-color: black;
+    color: white;
+}

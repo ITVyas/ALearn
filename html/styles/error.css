@@ -1,0 +1,34 @@
+.menu-button-container {
+    display: block;
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    top: 10px;
+    left: 10px;
+    border: 3px solid gray;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 10px;
+    background-color: aliceblue;
+    transition: 0.1s all;
+    text-decoration: none;
+    color: black;
+}
+
+.menu-button-container:visited {
+    color: black;
+}
+
+.menu-button-container:hover {
+    width: 80px;
+}
+
+.menu-button {
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.menu-button:hover {
+    background-color: rgb(241, 241, 241);
+    cursor: pointer;
+}

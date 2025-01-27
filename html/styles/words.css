@@ -1,0 +1,368 @@
+.word-card {
+    width: 350px;
+    height: fit-content;
+    border-radius: 10px;
+    margin: auto auto;
+    background-color: rgb(234, 238, 255);
+    padding-bottom: 15px;
+    box-shadow: 0px 0px 6px rgb(198, 198, 198);
+    position: relative;
+}
+
+
+.word-spelling {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.block-title {
+    font-style: italic;
+    font-weight: bold;
+}
+
+ul.word-content li {
+    max-width: 320px;
+}
+
+.word-content-part {
+    margin-left: 15px;
+    margin-top: 15px;
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.word-card:hover {
+    cursor: pointer;
+    box-shadow: 1px 1px 8px rgb(227, 227, 227), -1px -1px 8px rgb(227, 227, 227);
+}
+
+.edit {
+    position: absolute;
+    right: 40px;
+    top: 0;
+    transform: translate(30%, -30%);
+    display: flex;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    padding-bottom: 2px;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    box-shadow: 0px 0px 5px black;
+    font-weight: normal;
+}
+
+.word-card:hover .edit {
+    display: flex;
+}
+
+.delete {
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translate(30%, -30%);
+    display: flex;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    padding-bottom: 2px;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    box-shadow: 0px 0px 5px black;
+    font-weight: normal;
+}
+
+.edit i {
+    transform: scale(0.75);;
+}
+
+
+.word-card:hover .delete {
+    display: flex;
+}
+
+
+.edit:hover {
+    background-color: rgb(53, 53, 53);
+}
+
+
+.delete:hover {
+    background-color: rgb(53, 53, 53);
+}
+
+.word-card:hover .word-header * {
+    display: flex;
+}
+
+.warning-bg, .word-edit-window-bg {
+    display: flex;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.25);
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.warning-bg .warning {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: fit-content;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: 0 0 8px gray;
+}
+
+.warning .warning-title {
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
+.yes-btn, .no-btn {
+    height: 35px;
+    width: 150px;
+    box-shadow: none;
+    border-radius: 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    margin: 0 20px;
+    font-weight: bold;
+    background: none;
+
+    @media (max-width: 440px) {
+        width: 80%;
+        margin-bottom: 20px;
+    };
+}
+
+.yes-btn {
+    border: 2px solid;
+    border-color: rgb(15, 140, 15);
+    color: rgb(15, 140, 15);
+}
+
+.no-btn {
+    border-color: rgb(154, 22, 22);
+    color: rgb(154, 22, 22);
+}
+
+.warning .btn-container {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
+    @media (max-width: 440px) {
+        flex-direction: column;
+    };
+}
+
+.yes-btn:hover, .no-btn:hover {
+    cursor: pointer;
+}
+
+.yes-btn:hover {
+    border: none;
+    background-color: rgb(15, 140, 15);
+    color: white;
+}
+
+.no-btn:hover {
+    border: none;
+    background-color: rgb(154, 22, 22);
+    color: white;
+}
+
+.word-edit-window {
+    display: flex;
+    background-color: white;
+    box-shadow: 0px 0px 8px gray;
+    border-radius: 8px;
+    width: 500px;
+    height: 500px;
+    margin: 20px;
+    padding: 15px 0 15px 15px;
+}
+
+.edit-form-all-fields-container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 107px);
+    max-height: calc(100% - 107px);
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.edit-word-form.add-word-form {
+    height: 100%;
+    max-height: 100%;
+}
+
+#edit-from-cancel {
+    border-color: black;
+    color: black;
+}
+
+#edit-from-cancel:hover {
+    background-color: black;
+    color: white;
+}
+
+.vocabulary-container {
+    /*
+    min-height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+    */
+}
+
+.vocabulary-top-bar {
+    height: 45px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.vocabulary-top-bar div {
+    height: 100%;
+    font-size: 20px;
+    width: calc(100% / 2);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 500;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.vocabulary-top-bar .words-btn.active {
+    background-color: rgb(0, 0, 118);
+    color: white;
+    border: none;
+}
+
+.vocabulary-top-bar .words-btn {
+    background-color: white;
+    color: rgb(0, 0, 118);
+    border-bottom: 1px solid gray;
+}
+
+.vocabulary-top-bar .cards-btn.active {
+    background-color: rgb(170, 82, 0);
+    color: white;
+    border: none;
+}
+
+.vocabulary-top-bar .cards-btn:not(.active):hover {
+    background-color: rgba(170, 82, 0, 0.2);
+}
+
+.vocabulary-top-bar .words-btn:not(.active):hover {
+    background-color: rgba(0, 0, 118, 0.2);
+}
+
+
+.vocabulary-top-bar .cards-btn {
+    background-color: white;
+    color: rgb(170, 82, 0);
+    border-bottom: 1px solid gray;
+}
+
+.pagination-container {
+    width: 100%;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items:end;
+    padding: 15px;
+}
+
+.pagination-container div {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.pagination-container div * {
+    margin: 0 5px;
+}
+
+.pagination-btn {
+    width: fit-content;
+    height: fit-content;
+    padding: 5px;
+    border: 2px solid black;
+    color: black;
+    border-radius: 5px;
+    background: none;
+    cursor: pointer;
+}
+
+.pagination-btn:not(:disabled):hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.pagination-btn:disabled {
+    cursor: default;
+    color: gray;
+    border-color: gray;
+}
+
+.add-word-submit:disabled {
+    box-shadow: none;
+    background: none;
+    border: 2px solid gray;
+    color: gray
+}
+
+.word-content-part ul {
+    list-style-type: none !important;
+    margin-left: 1.5em;
+}
+
+ul li {
+    position: relative;
+    margin: 3px 0;
+}
+
+ul li:before {
+    font-family: FontAwesome;
+    content: "\f138";
+    position: absolute;
+    left: -1.5rem;
+    top: 4px;
+    color: black;
+    transform: scale(0.8);
+  }
+

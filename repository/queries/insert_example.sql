@@ -1,0 +1,1 @@
+INSERT INTO word_examples (word_id, example_json) VALUES ($word_id, $sample);

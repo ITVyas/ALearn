@@ -1,0 +1,1 @@
+INSERT INTO word_explanations (word_id, explanation) VALUES ($word_id, $sample);

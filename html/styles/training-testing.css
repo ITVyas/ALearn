@@ -1,0 +1,402 @@
+.training-testing {
+    transition: transform 0.1s;
+    min-width: 300px;
+    width: 100%;
+    max-width: 600px;
+    height: fit-content;
+    margin: 10px auto;
+    overflow: hidden;
+}
+
+.testing-container {
+    width: 100%;
+}
+
+.training-testing.hiding {
+    display: none;
+}
+
+.training-testing .content {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.training-testing .word {
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.training-testing .options {
+    padding: 10px;
+}
+
+.training-testing .option {
+    height: fit-content;
+    padding: 5px;
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #D9EAFD;
+    margin: 10px auto;
+    text-align: center;
+    width: 100%;
+}
+
+.training-testing .option:hover {
+    cursor: pointer;
+    background-color: #c3d6ec;
+}
+
+.results {
+    margin: 10px auto;
+    min-width: 400px;
+    width: 100%;
+    max-width: 700px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.close-results {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #347570;
+    color: #347570;
+    font-size: 24px;
+    cursor: pointer;
+    top: 16px;
+    left: 16px;
+    width: 50px;
+    height: 40px;
+    border-radius: 10px;
+    font-weight: bold;
+    padding-right: 2px;
+    font-weight:900;
+}
+
+.close-results:hover {
+    background-color: #347570;
+    color: white;
+}
+
+.results h3 {
+    display: block;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 24px;
+    font-weight: normal;
+    margin: 10px !important;
+}
+
+.results .question-number {
+    display: block;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 13px !important;
+}
+
+.question-results {
+    margin-top: 15px;
+}
+
+.results .word {
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    text-decoration: underline;
+    font-weight: normal;
+    margin-bottom: 13px !important;
+}
+
+.results .option {
+    text-align: center;
+    font-size: 20px;
+    margin: 5px 10px;
+    background-color: rgb(242, 242, 242);
+    height: fit-content;
+    padding: 5px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.results .option.success {
+    background-color: rgb(209, 255, 230) !important;
+}
+
+.results .option.fail {
+    background-color: rgb(255, 221, 221) !important;
+}
+
+.menu-button-container {
+    display: block;
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    top: 10px;
+    left: 10px;
+    border: 3px solid gray;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 10px;
+    background-color: aliceblue;
+    transition: 0.1s all;
+    text-decoration: none;
+    color: black;
+}
+
+.menu-button-container:visited {
+    color: black;
+}
+
+.menu-button-container:hover {
+    width: 80px;
+}
+
+.menu-button {
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.menu-button:hover {
+    background-color: rgb(241, 241, 241);
+    cursor: pointer;
+}
+
+.gray-background {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 100;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.word-list-settings-container {
+    background-color: white;
+    box-shadow: 0px 0px 10px rgb(45, 45, 45);
+    border-radius: 15px;
+    width: 400px;
+    height: fit-content;
+    overflow: hidden;
+}
+
+.toggle-switch {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    display: inline-block;
+}
+
+.toggle-switch input[type="checkbox"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.switch {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.switch::before {
+    content: '';
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+input[type="checkbox"]:checked + .switch {
+    background-color: #4cafa8;
+}
+
+input[type="checkbox"]:checked + .switch::before {
+    transform: translateX(30px); 
+}
+
+.instance-info-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 20px;
+    margin: 10px 30px;
+}
+
+.word-list-settings-container .top-bar {
+    background-color: lightgray;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.word-list-settings-container .content {
+    width: 100%;
+    height: 250px;
+    overflow: auto;
+}
+
+.word-list-settings-container .buttons {
+    height: 80px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(243, 243, 243);
+}
+
+.word-list-settings-container .buttons .apply-btn, 
+.word-list-settings-container .buttons .cancel-btn {
+    display: flex;
+    background: none;
+    border: 2px solid rgb(8, 98, 137);
+    box-shadow: none;
+    border-radius: 6px;
+    color: rgb(8, 98, 137);
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin: 10px auto 20px;
+    justify-content: center;
+    cursor: pointer;
+    width: 100px;
+}
+
+.word-list-settings-container .buttons .cancel-btn {
+    border: 2px solid black;
+    color: black;
+}
+
+.word-list-settings-container .buttons .apply-btn:hover {
+    background-color: rgb(8, 98, 137);
+    color: white;
+}
+
+.word-list-settings-container .buttons .cancel-btn:hover {
+    background-color: black;
+    color: white;
+}
+
+.word-list-settings-container .buttons .apply-btn:disabled {
+    background-color: rgb(232, 232, 232);
+    border: 2px solid gray;
+    color: gray;
+    cursor: auto;
+}
+
+.word-list-settings-container .pagination-container {
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.word-list-settings-container .pagination-container * {
+    margin: 0 5px;
+}
+
+.word-list-settings-container .pagination-container .switch-btn {
+    height: 25px;
+    width: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 4px;
+    color: black;
+    padding-top: 1px;
+    cursor: pointer;
+    background: none;
+}
+
+.word-list-settings-container .pagination-container .switch-btn:disabled {
+    color: gray;
+    border-color: gray;
+    cursor: default;
+}
+
+.word-list-settings-container .pagination-container .switch-btn:not(:disabled):hover {
+    background-color: rgba(0, 0, 0, 0.14);
+}
+
+.input-and-max-value-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.max-value-label {
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: orangered;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    font-weight: 500;
+}
+
+.max-value-label span {
+    margin-left: 10px;
+}
+
+.training-form-warning {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    padding: 7px;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid black;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0px 0px 8px gray;
+    width: 300px;
+    font-size: 18px;
+}
+
+#train-settings-search {
+    height: 35px;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 2px 4px;
+    background-color: rgba(0, 0, 0, 0.1);
+    font-size: 20px;
+    width: 250px;
+}
+
+#train-settings-search:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+}

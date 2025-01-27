@@ -1,0 +1,20 @@
+{
+  "name": "word-learning-app",
+  "version": "1.0.0",
+  "description": "Desktop app for storing new English words and learn them. Primarily for native russian speakers.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "license": "ISC",
+  "dependencies": {
+    "sound-play": "^1.1.0",
+    "sqlite3": "^5.1.7"
+  },
+  "win": {
+    "target": "nsis",
+    "appId": "ALearn",
+    "icon": "./ALearn-icon.ico"
+  },
+  "author": "Viacheslav Rudametkin (slavoxhkaloo@gmail.com)"
+}

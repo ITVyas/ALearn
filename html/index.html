@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.5">
+    <title>Words List</title>
+    <link rel="stylesheet" href="./styles/index.css">
+    <link rel="stylesheet" href="./styles/words.css">
+    <link rel="stylesheet" href="./styles/card.css">
+    <link rel="stylesheet" href="./styles/form.css">
+    <link rel="stylesheet" href="./styles/card-form.css">
+    <link rel="stylesheet" href="./styles/training-testing.css">
+    <link rel="stylesheet" href="./styles/training-matching.css">
+    <link rel="stylesheet" href="./styles/settings.css">
+    <link rel="stylesheet" href="./styles/notifications.css">
+    <script src="https://kit.fontawesome.com/1691734459.js" crossorigin="anonymous"></script>
+
+    <script type="module" src="./scripts/root.js"></script>
+    <script type="module" src="./scripts/words.js"></script>
+    <script type="module" src="./scripts/form.js"></script>
+    <script type="module" src="./scripts/card-form.js"></script>
+    <script type="module" src="./scripts/training-testing.js"></script>
+    <script type="module" src="./scripts/training-matching.js"></script>
+    <script type="module" src="./scripts/settings.js"></script>
+    <script type="module" src="./scripts/notifications.js"></script>
+    <script type="module" src="./scripts/index.js"></script>
+</head>
+<body>
+    <div class="titlebar"></div>
+    <nav>
+        <div class="main-content">
+            <div class="menu-icon"><i class="fa-solid fa-bars menu-btn"></i></div>
+        </div>
+        <div class="search-container">
+            <input type="text" id="global-search-input" class="search">
+            <div class="search-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+        
+        <div class="extra-content">
+            <div class="notifications-icon">
+                <i class="fa-regular fa-message"></i>
+                <div class="notification-signal" style="display: none;">*</div>
+            </div>
+        </div>
+    </nav>
+    
+
+    <!-- update word window -->
+    <div style="display: none;" class="word-edit-window-bg">
+        <div class="word-edit-window">
+            <form action="" id="edit-word-form" class="edit-word-form add-word-form">
+                <div class="form-title">
+                    Word: <span id="edit-word-spelling">spelling</span>
+                </div>
+                <div class="edit-form-all-fields-container">
+                    <div class="field-container">
+                        <span class="form-block-title">Spelling:</span>
+                        
+                        <div class="center-elements">
+                            <span class="input-container">
+                                <input name="spelling" type="text" value="" class="spelling" placeholder="enter spelling..." required>
+                                <span class="translation-help-container">
+                                    <span class="translation-help oxford">O</span>
+                                    <span class="translation-help cambridge">C</span>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+            
+                    <div class="field-container">
+                        <span class="form-block-title">Translations:</span>
+                        <div class="inputs-container">
+                            <input name="translations[]" type="text" placeholder="enter translation..." required>
+                        </div>
+                    </div>
+            
+                    <div class="field-container">
+                        <span class="form-block-title">Explanations:</span>
+                        <div class="inputs-container">
+                            <input name="explanations[]" type="text" placeholder="enter explanation..." required>
+                        </div>
+                    </div>
+            
+                    <div class="field-container">
+                        <span class="form-block-title">Examples:</span>
+                        <div class="inputs-container">
+                            <input name="examples[]" type="text" placeholder="enter example..." required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="buttons-container">
+                    <button type="submit" class="add-word-submit">Confirm</button>
+                    <button type="button" id="edit-from-cancel" class="reset-form" tabindex="-1">Cancel</button>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+
+    <!-- cards training -->
+     <div id="card-training-window-bg" class="fullscreen-dark-bg" style="display: none;">
+        <div class="card-training-window">
+            <div class="preview-card" style="display: none;">
+                <div class="preview-card-content"></div>
+            </div>
+            <div class="top-bar">
+                <input type="text" class="card-training-search">
+            </div>
+            <div class="content"></div>
+            <div class="pagination-container">
+                <button class="card-training-pagination-btn"  id="card-training-prev-page"><i class="fa-solid fa-arrow-left"></i></button>
+                <span id="card-training-change-page">1</span>
+                <span>/</span>
+                <span id="card-training-change-max-page">...</span>
+                <button class="card-training-pagination-btn" id="card-training-next-page"><i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+            <div class="buttons-container">
+                <button class="apply-btn">Apply</button>
+                <button class="cancel-btn">Cancel</button>
+            </div>
+        </div>
+     </div>
+
+    <div class="all-container">
+        <div class="menu-container" style="display: none;">
+            <div class="menu-option current" id="vocabulary">Vocabulary</div>
+            <div class="menu-option" id="new-word">New word</div>
+            <div class="menu-option" id="new-card">New card</div>
+            <div class="menu-option" id="testing">Testing</div>
+            <div class="menu-option" id="matching">Matching</div>
+            <div class="menu-option" id="notifications">Notifications</div>
+            <div class="menu-option" id="settings">Settings</div>
+        </div>
+        <div class="content-body">
+                <div class="vocabulary-container in-container">
+                    <div class="vocabulary-top-bar">
+                        <div class="words-btn active">words</div>
+                        <div class="cards-btn">cards</div>
+                    </div>
+                    <div class="words-container">
+                    </div>
+                    <div class="cards-container" style="display: none;"></div>
+                    <div class="pagination-container">
+                        <div class="words-pagination">
+                            <button id="prev-words-page" class="pagination-btn"><i class="fa-solid fa-arrow-left"></i></button>
+                            <span id="words-current-page">1</span>
+                            <span>/</span>
+                            <span id="words-pages-number">1</span>
+                            <button id="next-words-page" class="pagination-btn"><i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                        <div class="cards-pagination" style="display: none;">
+                            <button id="prev-cards-page" class="pagination-btn"><i class="fa-solid fa-arrow-left"></i></button>
+                            <span id="cards-current-page">1</span>
+                            <span>/</span>
+                            <span id="cards-pages-number">1</span>
+                            <button id="next-cards-page" class="pagination-btn"><i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: none;" class="form-container in-container">
+                    <form id="add-word-form" action="" class="add-word-form">
+                        <div class="form-title">
+                            Add new word
+                        </div>
+                        <div class="field-container">
+                            <span class="form-block-title">Spelling:
+                                <span class="hint-container">
+                                    <i class="info-icon fa-solid fa-info fa-2xs"></i>
+                                    <span class="tooltip-info">Enter the word. Try not to use articles for better search and to avoid hints in tests.</span>
+                                </span>
+                            </span>
+                            
+                            <div class="center-elements">
+                                <span class="input-container">
+                                    <input name="spelling" type="text" value="" class="spelling" id="spelling" placeholder="enter spelling..." required>
+                                    <span class="translation-help-container">
+                                        <span class="translation-help oxford">O</span>
+                                        <span class="translation-help cambridge">C</span>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                
+                        <div class="field-container">
+                            <span class="form-block-title">Translations:</span>
+                            <div class="inputs-container">
+                                <input name="translations[]" type="text" placeholder="enter translation..." required>
+                            </div>
+                        </div>
+                
+                        <div class="field-container">
+                            <span class="form-block-title">Explanations:</span>
+                            <div class="inputs-container">
+                                <input name="explanations[]" type="text" placeholder="enter explanation..." required>
+                            </div>
+                        </div>
+                
+                        <div class="field-container">
+                            <span class="form-block-title">Examples:
+                                <span class="hint-container">
+                                    <i class="info-icon fa-solid fa-info fa-2xs"></i>
+                                    <span class="tooltip-info">Write example and pick out where your word is in sentence.</span>
+                                </span>
+                            </span>
+                            <div class="inputs-container">
+                                <input name="examples[]" type="text" placeholder="enter example..." required>
+                            </div>
+                        </div>
+                        <div class="buttons-container">
+                            <button type="submit" class="add-word-submit">Confirm</button>
+                            <button type="button" class="reset-form" tabindex="-1">Reset</button>
+                        </div>
+                        
+                    </form>
+                </div>
+    
+                <div style="display: none;" class="card-form-container in-container">
+                    <form class="card-form">
+                        <input style="display: none;" type="number" value="100" class="saturation-input" name="color-saturation">
+                        <input style="display: none;" type="number" value="95" class="brightness-input" name="color-brightness">
+                        <div id="card-text" style="background-color: hsl(0, 100%, 95%);">
+                            <textarea class="text-content" name="card-text" required></textarea>
+                            <div class="form-panel">
+                                <input type="text" name="card-name" class="card-name-input" placeholder="enter card name...">
+                                <div class="picking-color">
+                                    <i class="fa-solid fa-palette"></i>
+                                </div>
+                                <button type="submit" class="save-card-btn">Save</button>
+                                <div style="display: none;" class="picking-color-window">
+                                    <input
+                                        type="range"
+                                        name="color-hue"
+                                        id="hueSlider"
+                                        min="0"
+                                        max="360"
+                                        value="0"
+                                        class="hue-slider"/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+    
+                <div class="testing-container in-container" style="display: none;">
+                    <div class="settings">
+                        <h3 class="settings-title">Parameters</h1>
+                        <hr> 
+                        <form class="container" name="settings">
+                            <div class="field-label-text">Words number: <span class="words-amount-number">...</span></div>
+                            <div class="input-label field-label-text">Questions number:</div>
+    
+                            <div class="input-and-max-value-container">
+                                <div class="number-input-container">
+                                    <button class="btn-decrement" type="button">-</button>
+                                    <input name="questions_number" type="number" class="number-input" min="1" max="100" step="1" value="1" />
+                                    <button class="btn-increment" type="button">+</button>
+                                </div>
+                                <div class="max-value-label">
+                                    Max number: <span id="testing-max-questions-number">20+</span>
+                                </div>
+                            </div>
+                            
+    
+                            <div class="input-label field-label-text">Number of options for 1 question:</div>
+                            
+                            <div class="input-and-max-value-container">
+                                <div class="number-input-container">
+                                    <button class="btn-decrement" type="button">-</button>
+                                    <input name="question_options_number" type="number" class="number-input" min="2" max="8" step="1" value="2" />
+                                    <button class="btn-increment" type="button">+</button>
+                                </div>
+                                <div class="max-value-label">
+                                    Max number: <span id="testing-max-options-number">8</span>
+                                </div>
+                            </div>
+                            
+    
+                            <div class="input-label field-label-text">Type:</div>
+                            <select name="type" class="select-type">
+                                <option value="translations" default>Translations</option>
+                                <option value="explanations">Explanations</option>
+                                <option value="examples">Examples</option>
+                            </select>
+    
+                            <div class="buttons-container">
+                               <button type="submit" class="form-btn">Start training</button>
+                               <button type="button" class="words-list-btn" tabindex="-1"><span class="gear-icon">⚙</span> Words List</button>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+    
+                <div class="matching-container in-container" style="display: none;">
+                    <div class="settings">
+                        <h3 class="settings-title">Parameters</h1>
+                        <hr> 
+                        <form class="container" name="settings">
+                            <div class="field-label-text">Words number: <span class="words-amount-number">...</span></div>
+    
+                            <div class="input-label field-label-text">Questions number:</div>
+                            <div class="input-and-max-value-container">
+                                <div class="number-input-container">
+                                    <button class="btn-decrement" type="button">-</button>
+                                    <input name="questions_number" type="number" class="number-input" min="1" max="100" step="1" value="1" />
+                                    <button class="btn-increment" type="button">+</button>
+                                </div>
+                                <div class="max-value-label">
+                                    Max number: <span id="matching-max-questions-number">20+</span>
+                                </div>
+                            </div>
+    
+                            <div class="input-label field-label-text">Number of pairs for 1 question:</div>
+                            
+                            <div class="input-and-max-value-container">
+                                <div class="number-input-container">
+                                    <button class="btn-decrement" type="button">-</button>
+                                    <input name="question_pairs_number" type="number" class="number-input" min="2" max="8" step="1" value="2" />
+                                    <button class="btn-increment" type="button">+</button>
+                                </div>
+                                <div class="max-value-label">
+                                    Max number: <span id="matching-max-pairs-number">8</span>
+                                </div>
+                            </div>
+    
+                            <div class="input-label field-label-text">Type:</div>
+                            <select name="type" class="select-type">
+                                <option value="translations" default>Translations</option>
+                                <option value="explanations">Explanations</option>
+                                <option value="examples">Examples</option>
+                            </select>
+    
+    
+                            <div class="buttons-container">
+                                <button type="submit" class="form-btn">Start training</button>
+                                <button type="button" class="words-list-btn" tabindex="-1"><span class="gear-icon">⚙</span> Words List</button>
+                             </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="notifications-contatiner in-container" style="display: none;">
+                    <form id="notification-settings-form">
+                        <div class="setting-field">
+                            <span>Activate notifications: </span>
+                            <label class="setting-swtich">
+                                <input class="cb cb2" type="checkbox" name="notifications"/>
+                                <i></i> 
+                            </label>
+                        </div>
+                        <div id="if-notifications-active">
+                            <div class="hide"></div>
+                            <div class="setting-field">
+                                <span>Inform about notifications in your OS?</span>
+                                <label class="setting-swtich">
+                                    <input class="cb cb2" type="checkbox" name="inform-notifications"/>
+                                    <i></i> 
+                                </label>
+                            </div>
+    
+                            <div class="setting-field">
+                                <span>Create notifications with your vocabulary:</span>
+                                <label class="setting-swtich">
+                                    <input class="cb cb2" type="checkbox" name="vocabulary-notifications"/>
+                                    <i></i> 
+                                </label>
+                            </div>
+    
+                            <div id="if-vocabulary-notifications-active">
+                                <div class="hide"></div>
+                                <div class="setting-field">
+                                    <span>Use words:</span>
+                                    <label class="setting-swtich">
+                                        <input class="cb cb2" type="checkbox" name="vocabulary-words"/>
+                                        <i></i> 
+                                    </label>
+                                    <div id="use-words-warning" class="notifications-warning">
+                                        ❗
+                                        <div class="warning-msg">No available options</div>
+                                    </div>
+                                </div>
+                                <div class="setting-field">
+                                    <span>Use cards:</span>
+                                    <label class="setting-swtich">
+                                        <input class="cb cb2" type="checkbox" name="vocabulary-cards"/>
+                                        <i></i> 
+                                    </label>
+                                    <div id="use-cards-warning" class="notifications-warning">
+                                        ❗
+                                        <div class="warning-msg">No available options</div>
+                                    </div>
+                                </div>
+                                <div class="setting-field">
+                                    <span>Apply training filter:</span>
+                                    <label class="setting-swtich">
+                                        <input class="cb cb2" type="checkbox" name="vocabulary-training-filter"/>
+                                        <i></i> 
+                                    </label>
+                                </div>
+                            </div>
+    
+                            <div class="setting-field">
+                                <span>Additional notification with random B2-C1 word from "The Oxford 5000™ by CEFR level" list:</span>
+                                <label class="setting-swtich">
+                                    <input class="cb cb2" type="checkbox" name="oxford-word"/>
+                                    <i></i> 
+                                </label>
+                            </div>
+    
+                            <div class="setting-field">
+                                <span>Sending period (H:M): </span>
+                                <div id="notifications-period-input-container">
+                                    <div class="time-input-container">
+                                        <button type="button" class="btn-decrease">-</button>
+                                        <input type="text" class="time-input" name="period" id="notification-period" value="00:15" readonly />
+                                        <button type="button" class="btn-increase">+</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="setting-field">
+                                <span>Next planned notification: </span>
+                                <div id="next-notification-time">No planned</div>
+                                <button type="button" id="restart-notifications">Restart</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>  
+                <div class="settings-container in-container" style="display: none;">
+                    <div id="settings-form">
+                        <div class="setting-field">
+                            <span>Scale: </span>
+                            <div class="range-container">
+                                <input type="range" name="scale" id="scale" value="1" min="0.5" max="2" step="0.1">
+                                <div class="range-value-container"><i style="margin: 5px 0 0 0; transform: scale(0.8);" class="fa-solid fa-xmark"></i><span id="scale-value">1</span></div>
+                            </div>
+                        </div>
+                        <div class="setting-field">
+                            <span>Words training filter: </span>
+                            <button id="settings-words-list-btn" type="button" class="words-list-btn" tabindex="-1"><span class="gear-icon">⚙</span> Words List</button>
+                        </div>
+
+                        <div class="setting-field">
+                            <span>Cards training filter: </span>
+                            <button id="settings-cards-list-btn" type="button" class="words-list-btn" tabindex="-1"><span class="gear-icon">⚙</span> Cards List</button>
+                        </div>
+
+                        <div class="setting-field">
+                            <span>Close to tray:</span>
+                            <label class="setting-swtich">
+                                <input class="cb cb2" type="checkbox" name="close-to-tray"/>
+                                <i></i> 
+                            </label>
+                        </div>
+
+                        <button id="update-zoom" style="display: none;">Update zoom</button>
+                    </div>
+                </div>
+                
+        </div>
+        <div class="notifications-container" style="display: none;">
+            <div class="notifications-content">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
