@@ -8,6 +8,7 @@
   },
   "license": "ISC",
   "dependencies": {
+    "electron": "^34.0.2",
     "sound-play": "^1.1.0",
     "sqlite3": "^5.1.7"
   },

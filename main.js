@@ -61,35 +61,30 @@ async function handleWordsMatching(event, questionsNumber, pairsPerQuestion, mod
     if(!valid) Promise.reject(new Error("You can't create matching testing with these parameters."));
     const matchingBuilder = new MatchingBuilder(questionsNumber, pairsPerQuestion);
     const wordIdArrIgnore = [];
-    try {
-        while(!matchingBuilder.isBuildingFinished()) {
-            const val = await wordAPI.getForeignRowsForWordsSample(
-                config.MATCHING_BATCH_PICK_SIZE, 
-                Math.min(questionsNumber, config.MATCHING_MAX_RECORDS_PER_WORD),
-                modeName, 
-                wordIdArrIgnore
-            ).then(wordAndRecordsArr => {
-                if(wordAndRecordsArr.length === 0) {
-                    return 'break';
-                }
-                const pairsArr = wordAndRecordsArr.map(wordAndRecords => {
-                    wordIdArrIgnore.push(wordAndRecords.word_id);
-                    return wordAndRecords.recordsArr.map(record => {
-                        return {
-                            word: wordAndRecords.spelling,
-                            record: record
-                        };
-                    });
+    while(!matchingBuilder.isBuildingFinished()) {
+        const val = await wordAPI.getForeignRowsForWordsSample(
+            config.MATCHING_BATCH_PICK_SIZE, 
+            Math.min(questionsNumber, config.MATCHING_MAX_RECORDS_PER_WORD),
+            modeName, 
+            wordIdArrIgnore
+        ).then(wordAndRecordsArr => {
+            if(wordAndRecordsArr.length === 0) {
+                return 'break';
+            }
+            const pairsArr = wordAndRecordsArr.map(wordAndRecords => {
+                wordIdArrIgnore.push(wordAndRecords.word_id);
+                return wordAndRecords.recordsArr.map(record => {
+                    return {
+                        word: wordAndRecords.spelling,
+                        record: record
+                    };
                 });
-                pairsArr.forEach(pairs => matchingBuilder.insertPairs(pairs));
             });
-            if(val === 'break') break;
-        }
-        return matchingBuilder.getFinalMatchingTest();
-    } catch(e) {
-        console.log(e);
+            pairsArr.forEach(pairs => matchingBuilder.insertPairs(pairs));
+        });
+        if(val === 'break') break;
     }
-    
+    return matchingBuilder.getFinalMatchingTest();
 }
 
 function handleWordsTrainingInfo(event, pageNumber, pageCapacity, query) {
@@ -274,7 +269,7 @@ const createWindow = () => {
 
     app.MainWindow = win;
 
-    win.webContents.openDevTools();
+    win.loadFile(path.join(__dirname, 'html', 'index.html'));
 
     const tray = new Tray(path.join(__dirname, 'ALearn-icon.png'));
     const contextMenu = Menu.buildFromTemplate([
