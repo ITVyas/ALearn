@@ -153,14 +153,18 @@ function validationForm(e) {
 }
 
 function addScriptForWordSearchHelp() {
-    document.querySelector('.translation-help.cambridge').addEventListener('click', () => {
-        const query = document.querySelector('#spelling').value;
-        window.open(`https://dictionary.cambridge.org/search/direct/?datasetsearch=english-russian&q=${query}`);
+    Array.from(document.querySelectorAll('.translation-help.cambridge')).forEach(btn => {
+        btn.addEventListener('click', () => {
+            const query = document.querySelector('#spelling').value;
+            window.open(`https://dictionary.cambridge.org/search/direct/?datasetsearch=english-russian&q=${query}`);
+        })
     });
 
-    document.querySelector('.translation-help.oxford').addEventListener('click', () => {
-        const query = document.querySelector('#spelling').value;
-        window.open(`https://www.oxfordlearnersdictionaries.com/search/english/?q=${query}`);
+    Array.from(document.querySelectorAll('.translation-help.oxford')).forEach(btn => {
+        btn.addEventListener('click', () => {
+            const query = document.querySelector('#spelling').value;
+            window.open(`https://www.oxfordlearnersdictionaries.com/search/english/?q=${query}`);
+        })
     });
 }
 
